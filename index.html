@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mark Joseph S. Aguilar - Frontend Developer & UI/UX Designer." />
+  <title>Mark Joseph Aguilar | UI/UX & Frontend</title>
+  
+  <!-- Modern Agency Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #050505;
+      --bg-card: #111111;
+      --bg-card-hover: #1a1a1a;
+      --text-main: #ffffff;
+      --text-muted: #888888;
+      --accent: #ff6b00; /* Vibrant Orange */
+      --accent-hover: #e65c00;
+      --border: #222222;
+      --font: 'Outfit', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 3rem, 1200px);
+      margin-inline: auto;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(5, 5, 5, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .btn-nav {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-nav:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding-top: 150px;
+      padding-bottom: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 55ch;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 2px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 2px solid #333;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* HERO IMAGE & FLOATING ELEMENTS */
+    .hero-image-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image-bg {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 2;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    /* Floating Cards */
+    .floating-card {
+      position: absolute;
+      background: rgba(25, 25, 25, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      z-index: 3;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .float-1 { top: 10%; right: -10%; }
+    .float-2 { bottom: 15%; left: -10%; animation-delay: 3s; }
+
+    .floating-card .icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .floating-card .text h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .floating-card .text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* STATS SECTION */
+    .stats-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 0;
+      background: var(--bg-card);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item h2 {
+      font-size: 3.5rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+    }
+
+    .stat-item p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 8rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      max-width: 600px;
+      margin-inline: auto;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* ABOUT SECTION */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    .about-text h2 span {
+      color: var(--accent);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .info-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 16px;
+    }
+
+    .info-box h4 {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .info-box p {
+      color: var(--text-main);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 3rem 2rem;
+      border-radius: 24px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover {
+      background: var(--bg-card-hover);
+      border-color: #333;
+      transform: translateY(-10px);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 107, 0, 0.1);
+      color: var(--accent);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .service-tags span {
+      background: #1a1a1a;
+      color: #ccc;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      border: 1px solid #333;
+    }
+
+    /* PROCESS (01, 02, 03) */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .process-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 3rem 2rem;
+      border-radius: 24px;
+      transition: all 0.3s;
+    }
+
+    .process-card:hover {
+      border-color: var(--accent);
+    }
+
+    .process-num {
+      font-size: 4rem;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px #444;
+      line-height: 1;
+      margin-bottom: 2rem;
+      transition: all 0.3s;
+    }
+
+    .process-card:hover .process-num {
+      -webkit-text-stroke: 1px var(--accent);
+      color: rgba(255, 107, 0, 0.1);
+    }
+
+    .process-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .process-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* WORK / PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.4s;
+    }
+
+    .project-card:hover {
+      border-color: #333;
+      transform: translateY(-10px);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 300px;
+      background: #1a1a1a;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover .project-img img {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 2rem;
+    }
+
+    .project-content span {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .project-content h3 {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-content p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      text-align: center;
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+      background: radial-gradient(circle at center, rgba(255, 107, 0, 0.05) 0%, transparent 60%);
+    }
+
+    .contact-section h2 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-section p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .btn-large {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .btn-large:hover {
+      background: var(--accent-hover);
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-socials a:hover {
+      color: var(--accent);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .hero-grid, .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero p {
+        margin-inline: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-image-wrapper {
+        margin-top: 4rem;
+      }
+      .float-1 { right: 0; }
+      .float-2 { left: 0; }
+      
+      .services-grid, .process-grid, .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-card { max-width: 600px; margin-inline: auto; }
+      .about-info-grid { text-align: left; }
+    }
+
+    @media (max-width: 768px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 80px; left: 0; right: 0;
+        background: var(--bg-card);
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        display: none;
+      }
+      .nav-links.active { display: flex; }
+      .nav-btn-container { display: none; }
+      
+      .stats-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .hero h1 { font-size: 2.8rem; }
+      footer { flex-direction: column; text-align: center; }
+      .about-info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <!-- Changed MJA to MJ here -->
+      <a href="#" class="brand">MJ<span>.</span></a>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-btn-container">
+        <a href="#contact" class="btn-nav">Hire Me</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="hero-badge">Frontend Developer & UI/UX</span>
+          <h1>Designing <span>Digital</span> Experiences That Matter.</h1>
+          <p>
+            Hi, I'm Mark Joseph S. Aguilar. I bridge the gap between beautiful interface design and clean, functional code. I turn complex problems into intuitive, user-friendly web experiences.
+          </p>
+          <div class="hero-actions">
+            <a href="#work" class="btn-primary">View My Work</a>
+            <a href="#contact" class="btn-secondary">Let's Talk</a>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-image-bg"></div>
+          
+          <div class="floating-card float-1">
+            <div class="icon">✦</div>
+            <div class="text">
+              <h4>UI/UX Design</h4>
+              <p>Figma Expert</p>
+            </div>
+          </div>
+
+          <!-- Main Profile Image -->
+          <img src="profile.jpg" alt="Mark Joseph S. Aguilar" class="hero-img" />
+          
+          <div class="floating-card float-2">
+            <div class="icon">&lt;/&gt;</div>
+            <div class="text">
+              <h4>Frontend Dev</h4>
+              <p>React & CSS</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <div class="stats-section">
+      <div class="container stats-grid">
+        <div class="stat-item">
+          <h2>20+</h2>
+          <p>Projects Designed</p>
+        </div>
+        <div class="stat-item">
+          <h2>5+</h2>
+          <p>Happy Clients</p>
+        </div>
+        <div class="stat-item">
+          <h2>100%</h2>
+          <p>Commitment to Quality</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-text">
+          <h2>Turning Vision Into <span>Reality</span>.</h2>
+          <p>
+            I am a BSIT graduate from NEUST Atate Campus with a deep passion for Frontend Development and User Interface/User Experience (UI/UX) Design.
+          </p>
+          <p>
+            I believe that great software isn't just about code that works—it's about how it makes the user feel. I focus on creating accessible, responsive, and visually striking interfaces that solve real-world problems.
+          </p>
+        </div>
+        <div class="about-info-grid">
+          <div class="info-box">
+            <h4>Location</h4>
+            <p>Rizal City</p>
+          </div>
+          <div class="info-box">
+            <h4>Education</h4>
+            <p>NEUST Atate Campus</p>
+          </div>
+          <div class="info-box">
+            <h4>Degree</h4>
+            <p>BS Information Technology</p>
+          </div>
+          <div class="info-box">
+            <h4>Status</h4>
+            <p>Available for Work</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" style="background: #0a0a0a;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Services I Provide</h2>
+          <p>Combining aesthetics with functionality to create seamless digital products.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">✦</div>
+            <h3>UI/UX Design</h3>
+            <p>Crafting intuitive and engaging user experiences through research, wireframing, and high-fidelity prototyping.</p>
+            <div class="service-tags">
+              <span>Figma</span>
+              <span>Prototyping</span>
+              <span>Design Systems</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">◈</div>
+            <h3>Frontend Dev</h3>
+            <p>Translating beautiful designs into responsive, accessible, and pixel-perfect web interfaces.</p>
+            <div class="service-tags">
+              <span>HTML/CSS</span>
+              <span>JavaScript</span>
+              <span>React</span>
+              <span>Tailwind</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">◎</div>
+            <h3>User Research</h3>
+            <p>Understanding user needs and behaviors through testing and analysis to ensure products solve real problems.</p>
+            <div class="service-tags">
+              <span>Interviews</span>
+              <span>Usability Testing</span>
+              <span>Personas</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS (01, 02, 03) -->
+    <section id="process">
+      <div class="container">
+        <div class="section-header">
+          <h2>Design Solutions</h2>
+          <p>My process ensures that every design is both beautiful and functional.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-num">01</div>
+            <h3>Brand Identity & Strategy</h3>
+            <p>I start by understanding the target audience, business goals, and the problem we need to solve.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">02</div>
+            <h3>UI/UX Design & Digital Product</h3>
+            <p>Creating wireframes, user flows, and high-fidelity interactive prototypes to visualize the solution.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-num">03</div>
+            <h3>Web Development</h3>
+            <p>Writing clean, responsive, and accessible code to bring the designs to life perfectly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" style="background: #0a0a0a;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Selected Works</h2>
+          <p>A showcase of interfaces I've designed and developed.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-img">
+              <img src="project1.jpg" alt="Brand Identity & Strategy" />
+            </div>
+            <div class="project-content">
+              <span>Brand Identity & Strategy</span>
+              <h3>Crafting Meaningful Brands</h3>
+              <p>Transforming vision into a distinct visual identity that stands out and connects deeply with your audience.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-img">
+              <img src="project2.jpg" alt="UI/UX Design & Digital Product" />
+            </div>
+            <div class="project-content">
+              <span>UI/UX Design & Digital Product</span>
+              <h3>Intuitive Digital Experiences</h3>
+              <p>Designing user-centric interfaces and seamless digital products that solve real-world problems and drive results.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <h2>Let's Bring Your Vision to Life.</h2>
+        <p>Currently available for freelance projects and full-time roles.<br> Based in Rizal City.</p>
+        <a href="mailto:aguilarmarkjoseph873@gmail.com" class="btn-large">Get In Touch</a>
+        <br><br>
+        <p style="font-size: 1rem; margin-top: 2rem;">
+          Or email me directly at: <br>
+          <a href="mailto:aguilarmarkjoseph873@gmail.com" style="color: var(--accent); font-weight: 600; font-size: 1.2rem;">aguilarmarkjoseph873@gmail.com</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div>
+      <p>© <span id="year"></span> Mark Joseph S. Aguilar.</p>
+      <p>BSIT Graduate - NEUST Atate Campus</p>
+    </div>
+    <div class="footer-socials">
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+      <a href="#">Dribbble</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Dynamic Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
